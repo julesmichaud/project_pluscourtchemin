@@ -4,7 +4,7 @@ __date__ = '19/02/20'
 
 from graph import *
 
-graph = DirectedGraph()
+graph = UndirectedGraph.empty_graph()
 graph.add_vertex(1)
 graph.add_edge(1, 2, 3)
 graph.add_edge(2, 1, 1)

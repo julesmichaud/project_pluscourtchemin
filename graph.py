@@ -7,18 +7,19 @@ from copy import deepcopy
 
 class DirectedGraph:
 
-    def __init__(self, edges={}):
+    def __init__(self, edges):
         self.edges = edges
 
-    def getVertices(self):
-        V = set()
-        for sommet in self :
-            V.add(sommet)
-        return V
+    @classmethod
+    def empty_graph(cls):
+        return cls({})
 
     @property
     def vertices(self):
-        return self.getVertices()
+        V = set()
+        for sommet in self:
+            V.add(sommet)
+        return V
 
     @property
     def edges(self):
@@ -66,10 +67,7 @@ class DirectedGraph:
         return G
 
     def __len__(self):
-        compte = 0
-        for vertex in self:
-            compte += 1
-        return compte
+        return len(self.edges)
 
     def __getitem__(self, item):
         return self.edges[item]
@@ -84,6 +82,36 @@ class DirectedGraph:
         for key in self:
             vertex.add(key)
             for i in self[key]:
-                ed.append([key, i])
+                ed.append(["Arête :", (key, i), "Poids :", self[key][i]])
         return 'S = ' + str(vertex) + '       ' + 'E = ' + str(ed)
+
+
+class UndirectedGraph(DirectedGraph):
+
+    def __init__(self, edges):
+        super().__init__(edges)
+
+    def remove_vertex(self, vertex):
+        for sommet in self[vertex]:
+            del self[sommet][vertex]
+        del self.edges[vertex]
+
+    def add_edge(self, vertex1, vertex2, weight):
+        if vertex1 not in self.edges:
+            self.add_vertex(vertex1)
+        if vertex2 not in self.edges:
+            self.add_vertex(vertex2)
+        self.edges[vertex1][vertex2] = weight
+        self.edges[vertex2][vertex1] = weight
+
+    def remove_edge(self, vertex1, vertex2):
+        try:
+            del self.edges[vertex1][vertex2]
+            del self.edges[vertex2][vertex1]
+        except KeyError:
+            pass
+
+    def setWeight(self, vertex1, vertex2, weight):
+        self.edges[vertex1][vertex2] = weight
+        self.edges[vertex2][vertex1] = weight
 
