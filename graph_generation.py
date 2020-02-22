@@ -5,3 +5,4 @@ __date__ = '20/02/20'
 
 import graph
 
+def generate_random_graph(n_nodes, n_edges):
