@@ -52,12 +52,15 @@ def generate_random_graph(n_nodes, n_edges, directed=False):
 
 
 def generate_random_community_graph(n_nodes_per_community, p_intra, p_inter):
+    # initialisation of the community graph
     graph = UndirectedGraph.empty_graph()
     for community in range(len(n_nodes_per_community)):
         for node in range(n_nodes_per_community[community]):
             graph.edges[(community, node)] = {}
+    # creation of the community graph by looking at all the potential edges and creating them with some probability
     for s1 in graph.edges.keys():
         for s2 in graph.edges.keys():
+            # verification of a possible existing edge or of a non-sense edge
             if (s1 != s2) and (s2 not in graph.edges[s1].keys()):
                 p = random.random()
                 if s1[0] == s2[0]:
