@@ -59,7 +59,7 @@ def generate_random_community_graph(n_nodes_per_community, p_intra, p_inter):
     for s1 in graph.edges.keys():
         for s2 in graph.edges.keys():
             if (s1 != s2) and (s2 not in graph.edges[s1].keys()):
-                p = random.randint(0, 99) / 100
+                p = random.random()
                 if s1[0] == s2[0]:
                     if p < p_intra:
                         graph.edges[s1][s2] = 1
