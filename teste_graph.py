@@ -1,5 +1,5 @@
 __author__ = 'julesmichaud'
-__filename__ = 'test_graph.py'
+__filename__ = 'teste_graph.py'
 __date__ = '19/02/20'
 
 from graph import *

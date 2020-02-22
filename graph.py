@@ -16,10 +16,10 @@ class DirectedGraph:
 
     @property
     def vertices(self):
-        V = set()
-        for sommet in self:
-            V.add(sommet)
-        return V
+        v = set()
+        for node in self:
+            v.add(node)
+        return v
 
     @property
     def edges(self):
@@ -31,9 +31,9 @@ class DirectedGraph:
             self.__edges = x
 
     def remove_vertex(self, vertex):
-        for sommet in self:
+        for node in self:
             try:
-                del sommet[vertex]
+                del node[vertex]
             except KeyError:
                 pass
         del self.edges[vertex]
@@ -54,17 +54,17 @@ class DirectedGraph:
         except KeyError:
             pass
 
-    def setWeight(self, vertex1, vertex2, weight):
+    def set_weight(self, vertex1, vertex2, weight):
         self.edges[vertex1][vertex2] = weight
 
     def reset(self):
         self.edges = {}
 
-    def sous_graphe(self, V2):
-        G = deepcopy(self)
-        sommets = G.vertices.difference(V2)
-        G.remove_vertex(sommet for sommet in sommets)
-        return G
+    def sous_graph(self, v):
+        graph = deepcopy(self)
+        nodes = graph.vertices.difference(v)
+        graph.remove_vertex(node for node in nodes)
+        return graph
 
     def __len__(self):
         return len(self.edges)
@@ -82,8 +82,8 @@ class DirectedGraph:
         for key in self:
             vertex.add(key)
             for i in self[key]:
-                ed.append(["Arête :", (key, i), "Poids :", self[key][i]])
-        return 'S = ' + str(vertex) + '       ' + 'E = ' + str(ed)
+                ed.append(["Edge :", (key, i), "Weight :", self[key][i]])
+        return "S = " + str(vertex) + "\n" + "E = " + str(ed)
 
 
 class UndirectedGraph(DirectedGraph):
@@ -111,7 +111,6 @@ class UndirectedGraph(DirectedGraph):
         except KeyError:
             pass
 
-    def setWeight(self, vertex1, vertex2, weight):
+    def set_weight(self, vertex1, vertex2, weight):
         self.edges[vertex1][vertex2] = weight
         self.edges[vertex2][vertex1] = weight
-
