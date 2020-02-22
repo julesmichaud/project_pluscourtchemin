@@ -27,11 +27,13 @@ class DirectedGraph:
 
     @edges.setter
     def edges(self, x):
+        """verification edges is a dictionary of dictionaries"""
         if x == {} or (type(x) == dict and (type(y) == dict for y in x.val)):
             self.__edges = x
 
     def remove_vertex(self, vertex):
         for node in self:
+            '''delete the node if it's existing as a key or just pass to the next one if it doesn't'''
             try:
                 del node[vertex]
             except KeyError:
@@ -49,6 +51,7 @@ class DirectedGraph:
         self.edges[vertex1][vertex2] = weight
 
     def remove_edge(self, vertex1, vertex2):
+        """delete the edge if it's existing or just pass if it doesn't"""
         try:
             del self.edges[vertex1][vertex2]
         except KeyError:
@@ -61,6 +64,7 @@ class DirectedGraph:
         self.edges = {}
 
     def sous_graph(self, v):
+        """we determine the non-wished nodes and we delete them correctly thanks to remove_vertex"""
         graph = deepcopy(self)
         nodes = graph.vertices.difference(v)
         graph.remove_vertex(node for node in nodes)
@@ -77,6 +81,7 @@ class DirectedGraph:
             yield key
 
     def __str__(self):
+        """print the set of the vertex and the edges list with their weight"""
         vertex = set()
         ed = []
         for key in self:
@@ -92,8 +97,9 @@ class UndirectedGraph(DirectedGraph):
         super().__init__(edges)
 
     def remove_vertex(self, vertex):
-        for sommet in self[vertex]:
-            del self[sommet][vertex]
+        """an undirected graph permit us to code remove_vertex with a better complexity than a directed graph"""
+        for node in self[vertex]:
+            del self[node][vertex]
         del self.edges[vertex]
 
     def add_edge(self, vertex1, vertex2, weight):
