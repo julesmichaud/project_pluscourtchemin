@@ -6,6 +6,8 @@ from graph_generation import *
 
 # Undirected tests
 
+print("\n UNDIRECTED TESTS \n")
+
 G1 = generate_random_graph(10, 10)
 G2 = generate_random_graph(10, 45)
 G3 = generate_random_graph(0, 0)
@@ -13,7 +15,6 @@ G4 = generate_random_graph(0, 10)
 G5 = generate_random_graph(10, 46)
 
 
-print("\n Undirected tests \n")
 print(G1, "\n")
 print(G2, "\n")    # print a connected graph
 print(G3, "\n")    # print an empty graph
@@ -22,6 +23,8 @@ print(G5, "\n")    # print an error
 
 # Directed tests
 
+print("\n DIRECTED TESTS \n")
+
 G1 = generate_random_graph(10, 10, True)
 G2 = generate_random_graph(10, 90, True)
 G3 = generate_random_graph(0, 0, True)
@@ -29,7 +32,6 @@ G4 = generate_random_graph(0, 10, True)
 G5 = generate_random_graph(10, 91, True)
 
 
-print("\n Directed tests \n")
 print(G1, "\n")
 print(G2, "\n")    # print a connected graph
 print(G3, "\n")    # print an empty graph
@@ -38,6 +40,8 @@ print(G5, "\n")    # print an error
 
 # Communities tests
 
+print("\n COMMUNITIES TESTS \n")
+
 G1 = generate_random_community_graph([2, 1], 0, 0)
 G2 = generate_random_community_graph([2, 1], 1, 0)
 G3 = generate_random_community_graph([2, 1], 0, 1)
@@ -45,7 +49,6 @@ G4 = generate_random_community_graph([2, 1], 1, 1)
 G5 = generate_random_community_graph([2, 1], 0.5, 0.5)
 
 
-print("\n Communities tests \n")
 print(G1, "\n")    # print an empty graph
 print(G2, "\n")    # print an intra-community graph
 print(G3, "\n")    # print an inter-communities graph

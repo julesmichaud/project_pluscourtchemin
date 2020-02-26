@@ -91,6 +91,29 @@ class DirectedGraph:
                 ed.append(["Edge :", (key, i), "Weight :", self[key][i]])
         return "S = " + str(vertex) + "\n" + "E = " + str(ed)
 
+    def dijkstra(self, node):
+        """return a dictionary of lists with the length of the shortest way, and the shortest way nodes for each node"""
+        used_nodes = set()
+        way = dict()
+        '''initialisation'''
+        for i in self.vertices:
+            way[i] = float('inf')
+        way[node] = 0
+        '''calculation of the shortest ways as long as there are nodes we didn't find the shortest way'''
+        while len(self.vertices.difference(used_nodes)) != 0:
+            mini = float("inf")
+            arg_mini = None
+            for x in self.vertices.difference(used_nodes):
+                if way[x] <= mini:
+                    mini = way[x]
+                    arg_mini = x
+            used_nodes.add(arg_mini)
+            non_used_neighbours = set(self.edges[arg_mini].keys()).difference(used_nodes)
+            '''calculation of the new possible ways between x and his neighbours not yet used'''
+            for neighbour in non_used_neighbours:
+                way[neighbour] = min(way[neighbour], mini + self.edges[arg_mini][neighbour])
+        return way
+
     def shortest_way(self, node):
         """return a dictionary of lists with the length of the shortest way, and the shortest way nodes for each node"""
         used_nodes = set()
