@@ -42,18 +42,21 @@ graph_2.add_edge(4, 5, 1)
 
 print(graph_2.shortest_way(
     0))  # print {0: [0,"0"], 1: [1, "0-1"], 2: [2, "0-2"], 3: [5, "0-5-4-3"], 4: [4, "0-5-4"], 5: [3, "0-5"]}
+print(graph_2.bellman_ford(0))  # print {0: 0, 1: 1, 2: 2, 3: 5, 4: 4, 5: 3}
 print("\n")
 
 graph_2.remove_edge(0, 1)
 
 print(graph_2.shortest_way(
     0))  # print {0: [0,"0"], 1: [4, "0-1-2"], 2: [2, "0-2"], 3: [5, "0-5-4-3"], 4: [4, "0-5-4"], 5: [3, "0-5"]}
+print(graph_2.bellman_ford(0))  # print {0: 0, 1: 4, 2: 2, 3: 5, 4: 4, 5: 3}
 print("\n")
 
 graph_2.remove_edge(1, 2)
 
 print(graph_2.shortest_way(
     0))  # print {0: [0,"0"], 1: [inf, ""], 2: [2, "0-2"], 3: [5, "0-5-4-3"], 4: [4, "0-5-4"], 5: [3, "0-5"]}
+print(graph_2.bellman_ford(0))  # print {0: 0, 1: inf, 2: 2, 3: 5, 4: 4, 5: 3}
 print("\n")
 
 # Shortest way node tests

@@ -138,6 +138,23 @@ class DirectedGraph:
             x = heapq.heappop(queue)
         return [x[0], x[2]]
 
+    def bellman_ford(self, node):
+        """calculation of the shortest way thanks of dynamic programming"""
+        opt = dict()
+        '''initialisation'''
+        for i in self.vertices:
+            opt[i] = float("inf")
+        opt[node] = 0
+        '''for each iteration, we calculate the shortest way between "node" and the other nodes with at maximum k
+        edges'''
+        for k in range(1, len(self.vertices)-1):
+            for node_1 in self.vertices:
+                for node_2 in self.edges[node_1]:
+                    opt[node_2] = min(opt[node_2], opt[node_1] + self.edges[node_1][node_2])
+        '''return the shortest way for each node with at maximum len(self.vertices)-1 edges, that's exactly the shortest
+        way for each node'''
+        return opt
+
 
 class UndirectedGraph(DirectedGraph):
 
