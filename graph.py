@@ -3,6 +3,7 @@ __filename__ = 'graph.py.py'
 __date__ = '19/02/20'
 
 from copy import deepcopy
+import heapq
 
 
 class DirectedGraph:
@@ -89,6 +90,53 @@ class DirectedGraph:
             for i in self[key]:
                 ed.append(["Edge :", (key, i), "Weight :", self[key][i]])
         return "S = " + str(vertex) + "\n" + "E = " + str(ed)
+
+    def shortest_way(self, node):
+        """return a dictionary of lists with the length of the shortest way, and the shortest way nodes for each node"""
+        used_nodes = set()
+        queue = []
+        way = dict()
+        '''initialisation'''
+        for i in self.vertices:
+            heapq.heappush(queue, (float('inf'), i, ""))
+        heapq.heappush(queue, (0, node, str(node)))
+        '''calculation of the shortest ways as long as there are nodes we didn't find the shortest way'''
+        while len(self.vertices.difference(used_nodes)) != 0:
+            x = heapq.heappop(queue)
+            '''check that x has not yet a shortest way'''
+            if x[1] not in used_nodes:
+                way[x[1]] = [x[0], x[2]]
+                used_nodes.add(x[1])
+                non_used_neighbours = set(self.edges[x[1]].keys()).difference(used_nodes)
+                '''calculation of the new possible ways between x and his neighbours not yet used'''
+                for neighbour in non_used_neighbours:
+                    heapq.heappush(queue,
+                                   (x[0] + self.edges[x[1]][neighbour], neighbour, str(x[2]) + "-" + str(neighbour)))
+        return way
+
+    def shortest_way_node(self, node_1, node_2):
+        """calculation of all the shortest ways until finding the shortest way into node_1 and node_2"""
+        used_nodes = set()
+        queue = []
+        way = dict()
+        '''initialisation'''
+        for i in self.vertices:
+            heapq.heappush(queue, (float('inf'), i, ""))
+        heapq.heappush(queue, (0, node_1, str(node_1)))
+        x = heapq.heappop(queue)
+        '''calculation of the shortest ways as long as we didn't find the node_2 one'''
+        while x[1] != node_2 and len(self.vertices.difference(used_nodes)) != 0:
+            '''check that x has not yet a shortest way'''
+            if x[1] not in used_nodes:
+                way[x[1]] = [x[0], x[2]]
+                used_nodes.add(x[1])
+                non_used_neighbours = set(self.edges[x[1]].keys()).difference(used_nodes)
+                '''calculation of the new possible ways between x and his neighbours not yet used'''
+                for neighbour in non_used_neighbours:
+                    heapq.heappush(queue,
+                                   (x[0] + self.edges[x[1]][neighbour], neighbour, str(x[2]) + "-" + str(neighbour)))
+            x = heapq.heappop(queue)
+        return [x[0], x[2]]
 
 
 class UndirectedGraph(DirectedGraph):

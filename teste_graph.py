@@ -10,13 +10,58 @@ graph.add_edge(1, 2, 3)
 graph.add_edge(2, 1, 1)
 graph.add_edge(2, 3, 1)
 
-print(graph.vertices)  # print dict_keys([1,2,3])
+print(graph.vertices)  # print dict_keys([1, 2, 3])
 print(len(graph))  # print 3
-print(graph[2])  # print {1: 1, 3:1}
+print(graph[2])  # print {1: 1, 3: 1}
+print("\n")
+
 print(graph)
+print("\n")
 
 for vertex in graph:
     print(vertex)
+print("\n")
 
 graph.remove_edge(1, 2)
 print(graph)
+print("\n")
+
+# Shortest way tests
+
+graph_2 = UndirectedGraph.empty_graph()
+
+graph_2.add_edge(0, 1, 1)
+graph_2.add_edge(0, 2, 2)
+graph_2.add_edge(0, 3, 10)
+graph.add_edge(0, 4, 8)
+graph_2.add_edge(0, 5, 3)
+graph_2.add_edge(1, 2, 2)
+graph_2.add_edge(2, 3, 8)
+graph_2.add_edge(3, 4, 1)
+graph_2.add_edge(4, 5, 1)
+
+print(graph_2.shortest_way(
+    0))  # print {0: [0,"0"], 1: [1, "0-1"], 2: [2, "0-2"], 3: [5, "0-5-4-3"], 4: [4, "0-5-4"], 5: [3, "0-5"]}
+print("\n")
+
+graph_2.remove_edge(0, 1)
+
+print(graph_2.shortest_way(
+    0))  # print {0: [0,"0"], 1: [4, "0-1-2"], 2: [2, "0-2"], 3: [5, "0-5-4-3"], 4: [4, "0-5-4"], 5: [3, "0-5"]}
+print("\n")
+
+graph_2.remove_edge(1, 2)
+
+print(graph_2.shortest_way(
+    0))  # print {0: [0,"0"], 1: [inf, ""], 2: [2, "0-2"], 3: [5, "0-5-4-3"], 4: [4, "0-5-4"], 5: [3, "0-5"]}
+print("\n")
+
+# Shortest way node tests
+
+print(graph_2.shortest_way_node(0, 0))  # print [0,"0"]
+print(graph_2.shortest_way_node(0, 1))  # print [inf, ""]
+print(graph_2.shortest_way_node(0, 2))  # print [2, "0-2"]
+print(graph_2.shortest_way_node(0, 3))  # print [5, "0-5-4-3"]
+print(graph_2.shortest_way_node(0, 4))  # print [4, "0-5-4"]
+print(graph_2.shortest_way_node(0, 5))  # print [3, "0-5"]
+print("\n")
