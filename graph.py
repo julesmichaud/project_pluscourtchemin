@@ -8,7 +8,7 @@ import heapq
 
 class DirectedGraph:
 
-    def __init__(self, edges):
+    def __init__(self, edges = dict()):
         self.edges = edges
 
     @classmethod
