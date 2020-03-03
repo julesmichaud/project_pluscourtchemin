@@ -6,7 +6,7 @@ from graph_generation import *
 
 # Undirected tests
 
-print("\n UNDIRECTED TESTS \n")
+print("\nUNDIRECTED TESTS\n")
 
 G1 = generate_random_graph(10, 10)
 G2 = generate_random_graph(10, 45)
@@ -23,7 +23,7 @@ print(G5, "\n")    # print an error
 
 # Directed tests
 
-print("\n DIRECTED TESTS \n")
+print("\nDIRECTED TESTS\n")
 
 G1 = generate_random_graph(10, 10, True)
 G2 = generate_random_graph(10, 90, True)
@@ -40,7 +40,7 @@ print(G5, "\n")    # print an error
 
 # Communities tests
 
-print("\n COMMUNITIES TESTS \n")
+print("\nCOMMUNITIES TESTS\n")
 
 G1 = generate_random_community_graph([2, 1], 0, 0)
 G2 = generate_random_community_graph([2, 1], 1, 0)

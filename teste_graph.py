@@ -6,7 +6,7 @@ from graph import *
 
 # Class basic tests
 
-print("\n CLASS BASIC TESTS \n")
+print("\nCLASS BASIC TESTS\n")
 
 graph = UndirectedGraph.empty_graph()
 graph.add_vertex(1)
@@ -32,7 +32,7 @@ print("\n")
 
 # Shortest way tests
 
-print("\n SHORTEST WAY TESTS \n")
+print("\nSHORTEST WAY TESTS\n")
 
 graph_2 = UndirectedGraph.empty_graph()
 
@@ -84,7 +84,7 @@ print("\n")
 
 # Shortest way node tests
 
-print("\n SHORTEST WAY NODE TESTS \n")
+print("\nSHORTEST WAY NODE TESTS\n")
 
 print(graph_2.shortest_way_node(0, 0))  # print [0,"0"]
 print(graph_2.shortest_way_node(0, 1))  # print [inf, ""]
