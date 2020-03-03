@@ -13,7 +13,7 @@ def generate_random_graph(n_nodes, n_edges, directed=False):
             return UndirectedGraph.empty_graph()
         else:
             return DirectedGraph.empty_graph()
-    elif n_nodes > n_edges or (n_edges > (n_nodes * (n_nodes - 1) / 2) and not directed) or (
+    elif (n_nodes > n_edges and not directed) or (n_edges > (n_nodes * (n_nodes - 1) / 2) and not directed) or (
             n_edges > (n_nodes * (n_nodes - 1)) and directed):
         '''non-sense graph case'''
         return ValueError
