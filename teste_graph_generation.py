@@ -54,3 +54,19 @@ print(G2, "\n")    # print an intra-community graph
 print(G3, "\n")    # print an inter-communities graph
 print(G4, "\n")    # print an connected graph
 print(G5, "\n")
+
+# Time tests
+
+T = time()
+generate_random_community_graph([100 for i in range(100)], 0.3, 0.6)
+T = time() - T
+print(T)
+
+'''54s to generate a community graph with 100 people per community, with 100 communities'''
+
+T = time()
+generate_random_graph(100000, 1000000)
+T = time() - T
+print(T)
+
+'''42s to generate a random graph with 100.000 nodes, with 1.000.000 edges'''

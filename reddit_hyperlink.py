@@ -2,7 +2,7 @@ __author__ = "GODEFROY"
 __filename__ = "reddit_hyperlink.py"
 __date__ = "27/02/20"
 
-from graph import DirectedGraph
+from graph import *
 
 
 def read_file(file_name):
@@ -84,15 +84,43 @@ def part_total(graph, percentage):
     return part / part_tot * 100
 
 
+T = time()
 x = create_graph('soc-redditHyperlinks-title.tsv')
+T = time() - T
+print("-> Time to load a graph :", T)
+'''Take 2.1s'''
 
 print("\nTOP TEN SUBREEDDITS\n")
+T = time()
 print(max_deg(x, 10))
+T = time() - T
+print("-> Time to calculate top ten subbredits :", T)
+'''Take 0.09s'''
+
 print("\nNON LINKED SUBREDDITS NUMBER\n")
+T = time()
 print(nb_nul_deg(x))
+T = time() - T
+print("-> Time to calculate non linked subbredits number :", T)
+'''Take 0.09s'''
+
 print("\nTOTAL INTERACTION PART OF THE TWO MORE ACTIVE PERCENTS COMMUNITIES")
+T = time()
 print(part_total(x, 2))
+T = time() - T
+print("-> Time to calculate the total interaction part of the two more active percents communities :", T)
+'''Take 0.1s'''
+
 print("\nSHORTEST WAY BETWEEN 'disney' AND 'vegan'\n")
+T = time()
 print(x.shortest_way_node('disney', 'vegan'))
+T = time() - T
+print("-> Time to calculate the shortest way between 'disney' and 'vegan' :", T)
+'''Take 43s'''
+
 print("\nSHORTEST WAY BETWEEN 'greenbaypackers' AND 'missouripolitics'\n")
+T = time()
 print(x.shortest_way_node('greenbaypackers', 'missouripolitics'))
+T = time() - T
+print("-> Time to calculate the shortest way between 'greenbaypackers' and 'missouripolitics' :", T)
+'''Take s'''

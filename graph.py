@@ -3,12 +3,15 @@ __filename__ = 'graph.py.py'
 __date__ = '19/02/20'
 
 from copy import deepcopy
+import random
+from time import *
 import heapq
+import networkx as nx
 
 
 class DirectedGraph:
 
-    def __init__(self, edges = dict()):
+    def __init__(self, edges={}):
         self.edges = edges
 
     @classmethod
@@ -177,6 +180,9 @@ class DirectedGraph:
         '''return the shortest way for each node with at maximum len(self.vertices)-1 edges, that's exactly the shortest
         way for each node'''
         return opt
+
+    def to_networkx(self):
+        return nx.Graph(self.edges, create_using=nx.DiGraph)
 
 
 class UndirectedGraph(DirectedGraph):

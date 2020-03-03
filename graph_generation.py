@@ -3,7 +3,6 @@ __filename__ = 'graph_generation.py'
 __date__ = '20/02/20'
 
 from graph import *
-import random
 
 
 def generate_random_graph(n_nodes, n_edges, directed=False):
