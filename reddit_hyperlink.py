@@ -6,6 +6,7 @@ from graph import DirectedGraph
 
 
 def read_file(file_name):
+    """Create edges for a graph"""
     subreddit_file = open(file_name)
     subreddit_links_list = subreddit_file.readlines()[1:]
     subreddit_file.close()
@@ -18,6 +19,7 @@ def read_file(file_name):
 
 
 def create_graph_from_edges(links_list):
+    """Create graph with the edges list"""
     graph = DirectedGraph()
     for sub1, sub2 in set(links_list):
         if sub1 not in graph.edges:
@@ -34,6 +36,7 @@ def create_graph(file_name):
 
 
 def ranking_degree(graph):
+    """Create dictionaries with the nodes degree"""
     deg = dict()
     for node in graph:
         deg[node] = len(graph[node])
@@ -41,6 +44,7 @@ def ranking_degree(graph):
 
 
 def max_deg(graph, n):
+    """Return the n nodes with the maximum degree"""
     m = 0
     ranking = []
     degree = sorted(ranking_degree(graph).items(), key=lambda item: item[1], reverse=True)
@@ -53,6 +57,7 @@ def max_deg(graph, n):
 
 
 def nb_nul_deg(graph):
+    """Return the nodes with no link between other communities"""
     counter = 0
     degree = sorted(ranking_degree(graph).items(), key=lambda item: item[1])
     for node in degree:
@@ -63,6 +68,7 @@ def nb_nul_deg(graph):
 
 
 def part_total(graph, percentage):
+    """Total interactions part of the "percentage" more active percents communities"""
     m = 0
     degree = sorted(ranking_degree(graph).items(), key=lambda item: item[1], reverse=True)
     nb_sub = percentage * len(degree) / 100
@@ -80,5 +86,13 @@ def part_total(graph, percentage):
 
 x = create_graph('soc-redditHyperlinks-title.tsv')
 
+print("\nTOP TEN SUBREEDDITS\n")
+print(max_deg(x, 10))
+print("\nNON LINKED SUBREDDITS NUMBER\n")
+print(nb_nul_deg(x))
+print("\nTOTAL INTERACTION PART OF THE TWO MORE ACTIVE PERCENTS COMMUNITIES")
+print(part_total(x, 2))
+print("\nSHORTEST WAY BETWEEN 'disney' AND 'vegan'\n")
 print(x.shortest_way_node('disney', 'vegan'))
+print("\nSHORTEST WAY BETWEEN 'greenbaypackers' AND 'missouripolitics'\n")
 print(x.shortest_way_node('greenbaypackers', 'missouripolitics'))
