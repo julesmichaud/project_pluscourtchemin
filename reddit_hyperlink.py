@@ -4,6 +4,7 @@ __date__ = "27/02/20"
 
 from graph import DirectedGraph
 
+
 def read_file(file_name):
     subreddit_file = open(file_name)
     subreddit_links_list = subreddit_file.readlines()[1:]
