@@ -67,6 +67,7 @@ def generate_random_graph(n_nodes, n_edges, directed=False):
 
 def generate_random_community_graph(n_nodes_per_community, p_intra, p_inter):
     graph = UndirectedGraph.empty_graph()
+    viewed_nodes = set()
     '''initialisation of the community graph'''
     for community in range(len(n_nodes_per_community)):
         for node in range(n_nodes_per_community[community]):
@@ -75,7 +76,7 @@ def generate_random_community_graph(n_nodes_per_community, p_intra, p_inter):
     for s1 in graph.edges.keys():
         for s2 in graph.edges.keys():
             '''verification of a possible existing or non-sensed edge'''
-            if (s1 != s2) and (s2 not in graph.edges[s1].keys()):
+            if (s1 != s2) and (s2 not in viewed_nodes):
                 p = random.random()   # take a random number in [0, 1[
                 if s1[0] == s2[0]:
                     '''intra-community edge creation '''
@@ -87,4 +88,5 @@ def generate_random_community_graph(n_nodes_per_community, p_intra, p_inter):
                     if p < p_inter:
                         graph.edges[s1][s2] = 1
                         graph.edges[s2][s1] = 1
+        viewed_nodes.add(s1)
     return graph
