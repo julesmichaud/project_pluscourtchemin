@@ -29,64 +29,56 @@ def create_graph_from_edges(links_list):
 
 
 def create_graph(file_name):
-    # Creates graph with no duplicate edge
+    """Creates graph with no duplicate edge"""
     return create_graph_from_edges(set(read_file(file_name)))
 
 
-def classement_deg(graph):
+def ranking_degree(graph):
     deg = dict()
     for node in graph:
         deg[node] = len(graph[node])
-    return  deg
-
-x = create_graph('soc-redditHyperlinks-title.tsv')
+    return deg
 
 
 def max_deg(graph, n):
     m = 0
-    classement = []
-    degre = sorted(classement_deg(graph).items() , key = lambda item : item[1], reverse = True)
-    for node in degre:
-        classement += [node]
+    ranking = []
+    degree = sorted(ranking_degree(graph).items(), key=lambda item: item[1], reverse=True)
+    for node in degree:
+        ranking += [node]
         m += 1
         if m >= n:
             break
-    return classement
+    return ranking
 
 
-def nb_nuldeg(graph):
-    compteur = 0
-    degre = sorted(classement_deg(graph).items() , key = lambda item : item[1])
-    for node in degre:
+def nb_nul_deg(graph):
+    counter = 0
+    degree = sorted(ranking_degree(graph).items(), key=lambda item: item[1])
+    for node in degree:
         if node[1] != 0:
             break
-        compteur += 1
-    return compteur
+        counter += 1
+    return counter
 
 
-
-def part_total(graph, pourcentage):
+def part_total(graph, percentage):
     m = 0
-    classement = []
-    degre = sorted(classement_deg(graph).items(), key=lambda item: item[1], reverse=True)
-    nbsub = pourcentage * len(degre) /100
+    degree = sorted(ranking_degree(graph).items(), key=lambda item: item[1], reverse=True)
+    nb_sub = percentage * len(degree) / 100
     part = 0
-    parttot = 0
-    for node in degre:
-        if m <= nbsub:
+    part_tot = 0
+    for node in degree:
+        if m <= nb_sub:
             part += node[1]
-            parttot += node[1]
+            part_tot += node[1]
         else:
-            parttot += node[1]
-        m +=1
-    return part/parttot * 100
-
-print(x.shortest_way_node('disney','vegan'))
-print(x.shortest_way_node('greenbaypackers','missouripolitics'))
+            part_tot += node[1]
+        m += 1
+    return part / part_tot * 100
 
 
+x = create_graph('soc-redditHyperlinks-title.tsv')
 
-
-
-
-
+print(x.shortest_way_node('disney', 'vegan'))
+print(x.shortest_way_node('greenbaypackers', 'missouripolitics'))
