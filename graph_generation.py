@@ -47,7 +47,7 @@ def generate_random_graph(n_nodes, n_edges, directed=False):
                 graph.edges[s2][s1] = 1
                 counter += 1
     else:
-        '''creation of an directed graph'''
+        '''creation of a directed graph'''
         graph = DirectedGraph.empty_graph()
         counter = 0
         '''initialisation'''
