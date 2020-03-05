@@ -116,11 +116,11 @@ T = time()
 print(x.shortest_way_node('disney', 'vegan'))
 T = time() - T
 print("-> Time to calculate the shortest way between 'disney' and 'vegan' :", T)
-'''Take 43s'''
+'''Take 0.268s'''
 
 print("\nSHORTEST WAY BETWEEN 'greenbaypackers' AND 'missouripolitics'\n")
 T = time()
 print(x.shortest_way_node('greenbaypackers', 'missouripolitics'))
 T = time() - T
 print("-> Time to calculate the shortest way between 'greenbaypackers' and 'missouripolitics' :", T)
-'''Take 711s'''
+'''Take 0.302s'''
