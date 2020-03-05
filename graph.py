@@ -6,7 +6,7 @@ from copy import deepcopy
 import random
 from time import *
 import heapq
-import networkx as nx
+# import networkx as nx
 
 
 class DirectedGraph:

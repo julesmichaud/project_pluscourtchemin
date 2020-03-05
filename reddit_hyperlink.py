@@ -4,7 +4,6 @@ __date__ = "27/02/20"
 
 from graph import *
 
-AAAA
 
 def read_file(file_name):
     """Create edges for a graph"""
