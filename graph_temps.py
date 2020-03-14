@@ -74,11 +74,11 @@ def first_time_test(nb_test, coeff, condition, condition_bellman=False):
                 start = time()
                 graphs.shortest_way_node(node_1, node_2)
                 end = time()
-                time_inter[i] = end - start
+                time_inter[j] = end - start
             end_tot = time()
             print("Question 4.3 ok, in " + str(end_tot - start_tot) + " s")
             time_min += [float(np.amin(time_inter))]
-            time_max += [float(np.amin(time_inter))]
+            time_max += [float(np.amax(time_inter))]
             time_mean += [float(np.mean(time_inter))]
             time_median += [float(np.median(time_inter))]
             print("Step " + str(i + 1) + " on " + str(len(list_graph)) + " ended\n")
@@ -140,11 +140,11 @@ def second_time_test(nb_test, nb_node, condition, condition_bellman=False):
                 start = time()
                 graphs.shortest_way_node(node_1, node_2)
                 end = time()
-                time_inter[i] = end - start
+                time_inter[j] = end - start
             end_tot = time()
             print("Question 4.3 ok, in " + str(end_tot - start_tot) + " s")
             time_min += [float(np.amin(time_inter))]
-            time_max += [float(np.amin(time_inter))]
+            time_max += [float(np.amax(time_inter))]
             time_mean += [float(np.mean(time_inter))]
             time_median += [float(np.median(time_inter))]
             print("Step " + str(i + 1) + " on " + str(len(list_graph)) + " ended\n")
@@ -163,7 +163,7 @@ def second_time_test(nb_test, nb_node, condition, condition_bellman=False):
     return time_dijkstra, time_shortest_way, time_bellman_ford, time_min, time_max, time_mean, time_median
 
 
-nb_time_test = 10
+nb_time_test = 3
 
 alpha = 0.4
 first_calculation = True
