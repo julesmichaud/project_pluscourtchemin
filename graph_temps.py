@@ -165,6 +165,7 @@ def second_time_test(nb_test, nb_node, condition, condition_bellman=False):
 
 nb_time_test = 10
 
+'''4.1'''
 alpha = 0.4
 first_calculation = True
 times_dijkstra_1, times_shortest_way_1, times_bellman_ford_1, times_min_1, times_max_1, times_mean_1, times_median_1 = first_time_test(
@@ -172,6 +173,7 @@ times_dijkstra_1, times_shortest_way_1, times_bellman_ford_1, times_min_1, times
 print(times_dijkstra_1, "\n", times_shortest_way_1, "\n", times_bellman_ford_1, "\n", times_min_1, "\n", times_max_1,
       "\n", times_mean_1, "\n", times_median_1)
 
+'''4.2'''
 n = 5000
 second_calculation = True
 times_dijkstra_2, times_shortest_way_2, times_bellman_ford_2, times_min_2, times_max_2, times_mean_2, times_median_2 = second_time_test(
