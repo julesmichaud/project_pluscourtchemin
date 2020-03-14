@@ -166,14 +166,14 @@ def second_time_test(nb_test, nb_node, condition, condition_bellman=False):
 nb_time_test = 10
 
 alpha = 0.4
-first_calculation = False
+first_calculation = True
 times_dijkstra_1, times_shortest_way_1, times_bellman_ford_1, times_min_1, times_max_1, times_mean_1, times_median_1 = first_time_test(
     nb_time_test, alpha, first_calculation)
 print(times_dijkstra_1, "\n", times_shortest_way_1, "\n", times_bellman_ford_1, "\n", times_min_1, "\n", times_max_1,
       "\n", times_mean_1, "\n", times_median_1)
 
 n = 5000
-second_calculation = False
+second_calculation = True
 times_dijkstra_2, times_shortest_way_2, times_bellman_ford_2, times_min_2, times_max_2, times_mean_2, times_median_2 = second_time_test(
     nb_time_test, n, second_calculation)
 print(times_dijkstra_2, "\n", times_shortest_way_2, "\n", times_bellman_ford_2, "\n", times_min_2, "\n", times_max_2,
@@ -191,10 +191,10 @@ plt.plot(nb_list, times_dijkstra_1, label='Dijkstra')
 plt.plot(nb_list, times_shortest_way_1, label="Shortest_way")
 if times_bellman_ford_1:
     plt.plot(nb_list, times_bellman_ford_1, label="Bellman_ford")
-# plt.plot(nb_list, times_min_1, label="Time min")
-# plt.plot(nb_list, times_max_1, label="Time max")
-# plt.plot(nb_list, times_mean_1, label="Time mean")
-# plt.plot(nb_list, times_median_1, label="Time median")
+plt.plot(nb_list, times_min_1, label="Time min")
+plt.plot(nb_list, times_max_1, label="Time max")
+plt.plot(nb_list, times_mean_1, label="Time mean")
+plt.plot(nb_list, times_median_1, label="Time median")
 
 plt.legend(loc='best')
 plt.show()
@@ -211,10 +211,10 @@ plt.plot(nb_list, times_dijkstra_2, label='Dijkstra')
 plt.plot(nb_list, times_shortest_way_2, label="Shortest_way")
 if times_bellman_ford_2:
     plt.plot(nb_list, times_bellman_ford_2, label="Bellman_ford")
-# plt.plot(nb_list, times_min_2, label="Time min")
-# plt.plot(nb_list, times_max_2, label="Time max")
-# plt.plot(nb_list, times_mean_2, label="Time mean")
-# plt.plot(nb_list, times_median_2, label="Time median")
+plt.plot(nb_list, times_min_2, label="Time min")
+plt.plot(nb_list, times_max_2, label="Time max")
+plt.plot(nb_list, times_mean_2, label="Time mean")
+plt.plot(nb_list, times_median_2, label="Time median")
 
 plt.legend(loc='best')
 plt.show()
