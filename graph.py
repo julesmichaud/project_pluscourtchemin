@@ -1,5 +1,4 @@
-__author__ = 'julesmichaud'
-__filename__ = 'graph.py.py'
+__filename__ = 'graph.py'
 __date__ = '19/02/20'
 
 from copy import deepcopy
@@ -7,7 +6,8 @@ import random
 from time import *
 import heapq
 import networkx as nx
-import matplotlib as np
+import numpy as np
+import matplotlib.pyplot as plt
 import line_profiler as lp
 
 

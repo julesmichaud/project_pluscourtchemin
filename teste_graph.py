@@ -1,4 +1,3 @@
-__author__ = 'julesmichaud'
 __filename__ = 'teste_graph.py'
 __date__ = '19/02/20'
 
