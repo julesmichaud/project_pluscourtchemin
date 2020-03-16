@@ -24,4 +24,4 @@ Les graphs obtenus sont stockés dans le fichier "STATISTICS" et leur nom indiqu
 Enfin, il est déconseillé de changer la condition de calcul de Bellman-Ford par True car le temps de calcul pour cette fonction sur des gros graphs
 est très long.
 
-- Le dossier test_line_profiler regroupe ce que nous avons tenté de faire concernant le module line_profiler, mais nos fonctions ne marchent pas toutes.
+- Le dossier test_line_profiler regroupe ce que nous avons fait concernant le module line_profiler, mais nous n'avons pas stocké les résultats.
