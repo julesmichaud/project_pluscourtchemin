@@ -1,0 +1,24 @@
+Groupe : MICHAUD Jules, Godefroy Théo
+
+Hormis la question (bonus) concernant l'utilisation de line_profiler qui n'est pas totalement aboutie, toutes les
+questions ont été traitées (obligatoires et bonus)
+
+- Le document graph.py contient les classes DirectedGraph et UnidrectedGraph, il n'y a rien à lancer.
+Quelques tests simples sur les méthodes de la classe sont disponibles et lançables dans le document test_graph.py
+
+- Le document graph_generation.py contient les fonctions de génération de graphs, il n'y a rien à lancer non plus.
+Quelques tests sur ces deux fonctions sont disponibles et lançables dans le document test_graph_generation.py
+
+- Le document reddit_hyperlink est lançable et répond aux questions concernant les graphs Reddit, auxquelles nous avons rajouté des calculs de temps
+pour chaque fonction utilisée. Les résultats + temps obtenus sont stockés en commentaire.
+
+- Le document graph_temps.py est lançable sous certaines conditions et répond aux questions de la partie 4 et de la partie 6. Il est déconseillé
+cependant de lancer à la fois le calcul de temps pour Dikjstra/Dikjstra avec tas/Bellman-Ford/Networkx/Tirages. Les fonction contenant "first"
+servent à calculer ce qui est reatif à la question 4.1, et "second" ce qui est relatif à la 4.2. On peut modifier les paramètres d'entrée (alpha pour
+la 4.1 qui est à 0.4, nb_noeud pour la 4.2 qui est à 5000) juste avant la partie affichage du document. On peut de plus choisir de recalculer ou non
+les données ou d'afficher celles enregistrées en remplaçant la valeur de la condition par True (calcul) ou par False (pas calcul).
+Les graphs obtenus sont stockés dans le fichier "STATISTICS" et leur nom indique leur provenance.
+Enfin, il est déconseillé de changer la condition de calcul de Bellman-Ford par True car le temps de calcul pour cette fonction sur des gros graphs
+est très long.
+
+- Le dossier test_line_profiler regroupe ce que nous avons tenté de faire concernant le module line_profiler, mais nos fonctions ne marchent pas toutes.
