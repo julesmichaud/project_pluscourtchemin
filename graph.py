@@ -34,7 +34,7 @@ class DirectedGraph:
     @edges.setter
     def edges(self, x):
         """verification edges is a dictionary of dictionaries"""
-        if x == {} or (type(x) == dict and (type(y) == dict for y in x.val)):
+        if x == {} or (type(x) == dict and (type(y) == dict for y in x.values())):
             self.__edges = x
 
     def remove_vertex(self, vertex):

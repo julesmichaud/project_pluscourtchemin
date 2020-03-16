@@ -26,7 +26,5 @@ if __name__ == '__main__':
 
     lp.print_stats(output_unit=1e-3)
 
-    stats_file = 'profile_generation_graph.lprof'
+    stats_file = 'generation_profiler.lprof'
     lp.dump_stats(stats_file)
-    #print('Run the following command to display the results:')
-    #print('$ python3 -m line_profiler {}'.format(stats_file))
