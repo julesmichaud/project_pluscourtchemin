@@ -32,13 +32,14 @@ def second_generation_list_graph(nb_test, fixed_node):
 
 
 def first_time_test(nb_test, coeff, condition, condition_bellman=False):
-    """Calculation of the 4.1 times if condition is True or just return the times already calculated else"""
+    """Calculation of the 4.1 and 6.2 times if condition is True or just return the times already calculated else"""
     if condition:
         """Question 4.1"""
         list_graph = first_generation_list_graph(nb_test, coeff)
         print("list_graph calculated !\n")
         time_dijkstra = []
         time_shortest_way = []
+        time_networkx = []
         time_bellman_ford = []
         time_min = []
         time_max = []
@@ -58,6 +59,13 @@ def first_time_test(nb_test, coeff, condition, condition_bellman=False):
             end = time()
             time_shortest_way.append(end - start)
             print("Shortest_way ok, in " + str(end - start) + " s")
+            '''Time calculation for Networkx'''
+            G = graphs.to_networkx()
+            start = time()
+            nx.dijkstra_predecessor_and_distance(G, 0)
+            end = time()
+            time_networkx.append(end - start)
+            print("Networkx ok, in " + str(end - start) + " s")
             if condition_bellman:
                 '''Time calculation for Bellman_ford'''
                 start = time()
@@ -65,22 +73,22 @@ def first_time_test(nb_test, coeff, condition, condition_bellman=False):
                 end = time()
                 time_bellman_ford.append(end - start)
                 print("Bellman_ford ok, in " + str(end - start) + " s")
-            '''Question 4.3'''
-            start_tot = time()
-            time_inter = np.zeros((100,))
-            for j in range(100):
-                node_1 = random.randint(0, (i + 1) * 10 ** 3 - 1)
-                node_2 = random.randint(0, (i + 1) * 10 ** 3 - 1)
-                start = time()
-                graphs.shortest_way_node(node_1, node_2)
-                end = time()
-                time_inter[j] = end - start
-            end_tot = time()
-            print("Question 4.3 ok, in " + str(end_tot - start_tot) + " s")
-            time_min += [float(np.amin(time_inter))]
-            time_max += [float(np.amax(time_inter))]
-            time_mean += [float(np.mean(time_inter))]
-            time_median += [float(np.median(time_inter))]
+            # '''Question 4.3'''
+            # start_tot = time()
+            # time_inter = np.zeros((100,))
+            # for j in range(100):
+            #     node_1 = random.randint(0, (i + 1) * 10 ** 3 - 1)
+            #     node_2 = random.randint(0, (i + 1) * 10 ** 3 - 1)
+            #     start = time()
+            #     graphs.shortest_way_node(node_1, node_2)
+            #     end = time()
+            #     time_inter[j] = end - start
+            # end_tot = time()
+            # print("Question 4.3 ok, in " + str(end_tot - start_tot) + " s")
+            # time_min += [float(np.amin(time_inter))]
+            # time_max += [float(np.amax(time_inter))]
+            # time_mean += [float(np.mean(time_inter))]
+            # time_median += [float(np.median(time_inter))]
             print("Step " + str(i + 1) + " on " + str(len(list_graph)) + " ended\n")
     else:
         '''Results for nb_time_test = 10 and alpha = 0.4'''
@@ -90,6 +98,7 @@ def first_time_test(nb_test, coeff, condition, condition_bellman=False):
         time_shortest_way = [0.12702345848083496, 0.46390557289123535, 1.0327463150024414, 1.8360981941223145,
                              2.7936763763427734, 3.996694803237915, 5.640308618545532, 7.564144611358643,
                              9.603963613510132, 12.076156616210938]
+        time_networkx = []
         time_bellman_ford = []
         time_min = [0.0006809234619140625, 0.010604619979858398, 0.018097400665283203, 0.04246973991394043,
                     0.046694278717041016, 0.004461765289306641, 0.06990647315979004, 0.08856773376464844,
@@ -102,16 +111,17 @@ def first_time_test(nb_test, coeff, condition, condition_bellman=False):
         time_median = [0.07139980792999268, 0.32485318183898926, 0.6412447690963745, 1.3009998798370361,
                        1.6949758529663086, 2.839174270629883, 3.510979175567627, 5.4859853982925415, 6.526684403419495,
                        8.257450222969055]
-    return time_dijkstra, time_shortest_way, time_bellman_ford, time_min, time_max, time_mean, time_median
+    return time_dijkstra, time_shortest_way, time_networkx, time_bellman_ford, time_min, time_max, time_mean, time_median
 
 
 def second_time_test(nb_test, nb_node, condition, condition_bellman=False):
-    """Calculation of the 4.2 times if condition is True or just return the times already calculated else"""
+    """Calculation of the 4.2 and 6.2 times if condition is True or just return the times already calculated else"""
     if condition:
         list_graph = second_generation_list_graph(nb_test, nb_node)
         print("list_graph calculated !\n")
         time_dijkstra = []
         time_shortest_way = []
+        time_networkx = []
         time_bellman_ford = []
         time_min = []
         time_max = []
@@ -131,6 +141,13 @@ def second_time_test(nb_test, nb_node, condition, condition_bellman=False):
             end = time()
             time_shortest_way.append(end - start)
             print("Shortest_way ok, in " + str(end - start) + " s")
+            '''Time calculation for Networkx'''
+            G = graphs.to_networkx()
+            start = time()
+            nx.dijkstra_predecessor_and_distance(G, 0)
+            end = time()
+            time_networkx.append(end - start)
+            print("Networkx ok, in " + str(end - start) + " s")
             if condition_bellman:
                 '''Time calculation for Bellman_ford'''
                 start = time()
@@ -138,22 +155,22 @@ def second_time_test(nb_test, nb_node, condition, condition_bellman=False):
                 end = time()
                 time_bellman_ford.append(end - start)
                 print("Bellman_ford ok, in " + str(end - start) + " s")
-            '''Question 4.3'''
-            start_tot = time()
-            time_inter = np.zeros((100,))
-            for j in range(100):
-                node_1 = random.randint(0, nb_node - 1)
-                node_2 = random.randint(0, nb_node - 1)
-                start = time()
-                graphs.shortest_way_node(node_1, node_2)
-                end = time()
-                time_inter[j] = end - start
-            end_tot = time()
-            print("Question 4.3 ok, in " + str(end_tot - start_tot) + " s")
-            time_min += [float(np.amin(time_inter))]
-            time_max += [float(np.amax(time_inter))]
-            time_mean += [float(np.mean(time_inter))]
-            time_median += [float(np.median(time_inter))]
+            # '''Question 4.3'''
+            # start_tot = time()
+            # time_inter = np.zeros((100,))
+            # for j in range(100):
+            #     node_1 = random.randint(0, nb_node - 1)
+            #     node_2 = random.randint(0, nb_node - 1)
+            #     start = time()
+            #     graphs.shortest_way_node(node_1, node_2)
+            #     end = time()
+            #     time_inter[j] = end - start
+            # end_tot = time()
+            # print("Question 4.3 ok, in " + str(end_tot - start_tot) + " s")
+            # time_min += [float(np.amin(time_inter))]
+            # time_max += [float(np.amax(time_inter))]
+            # time_mean += [float(np.mean(time_inter))]
+            # time_median += [float(np.median(time_inter))]
             print("Step " + str(i + 1) + " on " + str(len(list_graph)) + " ended\n")
     else:
         '''Results for nb_time_test = 10 and 5000 nodes'''
@@ -162,6 +179,7 @@ def second_time_test(nb_test, nb_node, condition, condition_bellman=False):
         time_shortest_way = [0.02442646026611328, 0.4519188404083252, 0.8293697834014893, 1.2077007293701172,
                              1.5417993068695068, 1.8859360218048096, 2.1715266704559326, 2.363393783569336,
                              2.595062255859375, 2.7069785594940186]
+        time_networkx = []
         time_bellman_ford = []
         time_min = [0.003783702850341797, 0.01924443244934082, 0.020061969757080078, 0.06890749931335449,
                     0.08015894889831543, 0.031990766525268555, 0.04362607002258301, 0.020394563674926758,
@@ -174,25 +192,25 @@ def second_time_test(nb_test, nb_node, condition, condition_bellman=False):
         time_median = [0.014207124710083008, 0.31185054779052734, 0.4618358612060547, 0.8096860647201538,
                        1.0868489742279053, 0.9326863288879395, 1.6096491813659668, 1.7150532007217407,
                        1.853645920753479, 1.6876331567764282]
-    return time_dijkstra, time_shortest_way, time_bellman_ford, time_min, time_max, time_mean, time_median
+    return time_dijkstra, time_shortest_way, time_networkx, time_bellman_ford, time_min, time_max, time_mean, time_median
 
 
 nb_time_test = 10
 
-'''4.1'''
+'''4.1 and 4.3 and 6.2'''
 alpha = 0.4
 first_calculation = False
-times_dijkstra_1, times_shortest_way_1, times_bellman_ford_1, times_min_1, times_max_1, times_mean_1, times_median_1 = first_time_test(
+times_dijkstra_1, times_shortest_way_1, times_networkx_1, times_bellman_ford_1, times_min_1, times_max_1, times_mean_1, times_median_1 = first_time_test(
     nb_time_test, alpha, first_calculation)
-print(times_dijkstra_1, "\n", times_shortest_way_1, "\n", times_bellman_ford_1, "\n", times_min_1, "\n", times_max_1,
+print(times_dijkstra_1, "\n", times_shortest_way_1, "\n", times_networkx_1, "\n", times_bellman_ford_1, "\n", times_min_1, "\n", times_max_1,
       "\n", times_mean_1, "\n", times_median_1)
 
-'''4.2'''
+'''4.2 and 4.3 and 6.2'''
 n = 5000
 second_calculation = False
-times_dijkstra_2, times_shortest_way_2, times_bellman_ford_2, times_min_2, times_max_2, times_mean_2, times_median_2 = second_time_test(
+times_dijkstra_2, times_shortest_way_2, times_networkx_2, times_bellman_ford_2, times_min_2, times_max_2, times_mean_2, times_median_2 = second_time_test(
     nb_time_test, n, second_calculation)
-print(times_dijkstra_2, "\n", times_shortest_way_2, "\n", times_bellman_ford_2, "\n", times_min_2, "\n", times_max_2,
+print(times_dijkstra_2, "\n", times_shortest_way_2, "\n", times_networkx_2, "\n", times_bellman_ford_2, "\n", times_min_2, "\n", times_max_2,
       "\n", times_mean_2, "\n", times_median_2)
 
 '''Plot 1'''
@@ -205,12 +223,13 @@ plt.title(r"Edges number = $0.4n^2$")
 
 plt.plot(nb_list, times_dijkstra_1, label='Dijkstra')
 plt.plot(nb_list, times_shortest_way_1, label="Shortest_way")
+plt.plot(nb_list, times_networkx_1, label='Networkx')
 if times_bellman_ford_1:
     plt.plot(nb_list, times_bellman_ford_1, label="Bellman_ford")
-plt.plot(nb_list, times_min_1, label="Time min")
-plt.plot(nb_list, times_max_1, label="Time max")
-plt.plot(nb_list, times_mean_1, label="Time mean")
-plt.plot(nb_list, times_median_1, label="Time median")
+# plt.plot(nb_list, times_min_1, label="Time min")
+# plt.plot(nb_list, times_max_1, label="Time max")
+# plt.plot(nb_list, times_mean_1, label="Time mean")
+# plt.plot(nb_list, times_median_1, label="Time median")
 
 plt.legend(loc='best')
 plt.show()
@@ -225,12 +244,13 @@ plt.title(r"Nodes number = " + str(n))
 
 plt.plot(nb_list, times_dijkstra_2, label='Dijkstra')
 plt.plot(nb_list, times_shortest_way_2, label="Shortest_way")
+plt.plot(nb_list, times_networkx_2, label='Networkx')
 if times_bellman_ford_2:
     plt.plot(nb_list, times_bellman_ford_2, label="Bellman_ford")
-plt.plot(nb_list, times_min_2, label="Time min")
-plt.plot(nb_list, times_max_2, label="Time max")
-plt.plot(nb_list, times_mean_2, label="Time mean")
-plt.plot(nb_list, times_median_2, label="Time median")
+# plt.plot(nb_list, times_min_2, label="Time min")
+# plt.plot(nb_list, times_max_2, label="Time max")
+# plt.plot(nb_list, times_mean_2, label="Time mean")
+# plt.plot(nb_list, times_median_2, label="Time median")
 
 plt.legend(loc='best')
 plt.show()
